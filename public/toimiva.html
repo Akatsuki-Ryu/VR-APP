@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='train'>
+<head>
+  <meta charset="utf-8">
+  <title>Train test 1</title>
+  <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body ng-controller="SeatsController as seats">
+<header>
+  <h1>Juna</h1>
+</header>
+
+
+<div class="container">
+  <!-- Train -->
+
+  <div class="train">
+
+
+    <!-- Carriage 1 -->
+    <div class='carriage-wrapper' id="t1" ng-init="carriageId='A'">
+
+
+      <!-- Part 1 -->
+
+      <!-- Carriage 1 Seat-section 1 -->
+
+      <div class='seat-section back p1 r1'>
+
+        <div class='seat A' ng-click="seats.selectSeat(carriageId + 1)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + 1)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + 1)">
+          <p>1</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 2" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+
+      <!-- Part 2 -->
+
+      <!-- Carriage 1 Part 2 Seat-section 1 -->
+
+      <div class='seat-section back p2 r1'>
+
+        <div class='seat A' ng-init="seatId = 3" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 4" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 5" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 6" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!-- Train 1 Part 2 Seat-section 2 -->
+
+      <div class='seat-section back p2 r2'>
+
+        <div class='seat A' ng-init="seatId = 7" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 8" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 9" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 10" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!-- Train 1 Part 2 Seat-section 3 -->
+
+      <div class='seat-section back p2 r3'>
+
+        <div class='seat A' ng-init="seatId = 11" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 12" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p><
+        </div>
+
+        <div class='seat C' ng-init="seatId = 13" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 14" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+
+      <!-- Train 1 Part 2 Seat-section 4 -->
+
+      <div class='seat-section back p2 r4'>
+
+        <div class='seat A' ng-init="seatId = 15" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 16" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 17" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 18" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+      <!-- Train 1 Part 2 Seat-section 5 -->
+
+      <div class='seat-section front p2 r5'>
+
+        <div class='seat A' ng-init="seatId = 19" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 20" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 21" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 22" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!-- Train 1 Part 2 Seat-section 6 -->
+
+      <div class='seat-section front p2 r6'>
+
+        <div class='seat A' ng-init="seatId = 23" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 24" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 25" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 26" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!-- Train 1 Part 2 Seat-section 7 -->
+
+      <div class='seat-section back p2 r7'>
+
+        <div class='seat A' ng-init="seatId = 27" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 28" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 29" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 30" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!--Train 1 Part 2 Seat-section 8 -->
+
+      <div class='seat-section back p2 r8'>
+
+        <div class='seat A' ng-init="seatId = 31" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 32" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 33" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 34" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!--Train 1 Part 2 Seat-section 9 -->
+
+      <div class='seat-section back p2 r9'>
+
+        <div class='seat A' ng-init="seatId = 35" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 36" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 37" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 38" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!--Train 1 Part 2 Seat-section 10 -->
+
+      <div class='seat-section back p2 r10'>
+
+        <div class='seat A' ng-init="seatId = 39" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 40" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 41" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 42" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!--Train 1 Part 2 Seat-section 11  -->
+
+      <div class='seat-section front p2 r11'>
+
+        <div class='seat A' ng-init="seatId = 43" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 44" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 45" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 46" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!--Train 1 Part 2 Seat-section 12  -->
+
+      <div class='seat-section front p2 r12'>
+
+        <div class='seat A' ng-init="seatId = 47" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 48" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 49" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 50" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!--Train 1 Part 2 Seat-section 13  -->
+
+      <div class='seat-section front p2 r13'>
+
+        <div class='seat A' ng-init="seatId = 51" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 52" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 53" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat D' ng-init="seatId = 54" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!-- Train Part 3 -->
+
+      <!-- Seat-section 1 -->
+
+      <div class='seat-section front p3 r1'>
+
+        <div class='seat A' ng-init="seatId = 55" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 56" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 57" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!-- Seat-section 2 -->
+
+      <div class="seat-section back p3 r2">
+
+        <div class='seat A' ng-init="seatId = 58" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 59" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 60" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+      </div>
+
+      <!-- Seat-section 3 -->
+
+      <div class="seat-section front p3 r3">
+
+        <div class='seat A' ng-init="seatId = 61" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat B' ng-init="seatId = 62" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+        <div class='seat C' ng-init="seatId = 63" ng-click="seats.selectSeat(carriageId + seatId)">
+          <img ng-src="{{seats.image[0]}}" ng-show="seats.isBooked(carriageId + seatId)"/>
+          <img ng-src="{{seats.image[1]}}" ng-show="seats.isEmpty(carriageId + seatId)">
+          <p>{{seatId}}</p>
+        </div>
+
+
+      </div>
+
+      <img class="c1"  ng-src="{{seats.carriages[0]}}"/>
+
+    </div>
+
+  </div>
+  <footer class="bottom"  ng-show="seats.isSelected" ng-click="seats.closeFooter()">
+    <h1>Lähtö {{seats.selectedSeat.start}}</h1>
+    <p>Mihin {{seats.selectedSeat.end}}</p>
+  </footer>
+
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+</body>
+</html>

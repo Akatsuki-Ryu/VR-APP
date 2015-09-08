@@ -1,0 +1,346 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('aleksi:server');
+var http = require('http');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Create Socket.io.
+ */
+
+var io = require('socket.io')(server);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**DATA
+ * */
+
+
+var amountOfSeats = 270;
+var locationAtTheMoment = 0;
+
+/**Ei muuteta*/
+var connections = [];
+
+var demoConnections = [];
+
+var locations = ["HELSINKI", "HÄMEENLINNA", "TAMPERE", "KOKKOLA", "OULU"];
+var locationMap = {HELSINKI: 0, HÄMEENLINNNA: 1, TAMPERE: 2, KOKKOLA: 3, OULU: 4};
+var demoIsGoing  = false;
+
+
+/*
+* READING DESCRIPTION DATA
+* */
+
+
+
+
+var names = [
+  "Minttu",
+  "Mira",
+  "Mirella",
+  "Mirja",
+  "Mirjami",
+  "Mirka",
+  "Mirkka",
+  "Nelli",
+  "Netta",
+  "Jari",
+  "Jarkko",
+  "Jarmo",
+  "Jarno",
+  "Jasper",
+  "Jere"
+];
+var descriptions = [
+  "Jatkaa laiturille 3",
+  "Jatkaa laiturille 1",
+  "Jatkaa laiturille 2",
+  "Tilasi päivän lehden",
+  "Tilasi aamupalan",
+  "Tarvitsee nostoapua",
+  "Opiskelija-alennus",
+];
+
+/*
+* Data service
+* */
+
+  app.get('/seatData', function(req, res){
+    res.send(connections[locationAtTheMoment]);
+  });
+
+  app.get('/locationData', function(req, res){
+    res.send(locations);
+  });
+
+  app.get('locationIndex', function(req, res){
+    res.send(locationAtTheMoment);
+  });
+
+/**
+ * SOCKET.IO
+ * */
+
+
+
+io.on('connection', function (socket) {
+  console.log('client has connected...!');
+  console.log(demoConnections.length);
+  if(demoConnections.length < 1) {
+    /*  for(var i in connections) {
+        var table = {};
+        for(var seat in connections[i]){
+          if(connections[i].hasOwnProperty(seat)) {
+            console.log(seat);
+            table[seat] = {id: seat, next: connections[i][seat].next, start: connections[i][seat].start, end: connections[i][seat].end, description: connections[i][seat].description};
+          }
+          demoConnections.push(table);
+        }
+      }*/
+      demoConnections = connections; 
+  }
+
+  socket.emit('locationIndex', locationAtTheMoment);
+  socket.emit('seatData', demoConnections[locationAtTheMoment]);
+  socket.emit('isGoing', demoIsGoing);
+
+  socket.on('nextConnection', function(){
+    console.log("seuraava");
+    locationAtTheMoment++;
+    next();
+  });
+
+  socket.on('seatBought', function(data) {
+
+    if(data.start === locations[locationAtTheMoment]){
+      demoConnections[locationAtTheMoment][data.id] = data;
+      seatBought(data.id);
+    } else {
+      var index = locationMap[data.start];
+      if(locationAtTheMoment < index) {
+        demoConnections[index][data.id] = data
+      };
+    };
+  });
+
+  socket.on('isGoing', function(bool){
+    console.log('isGoing');
+    console.log(bool);
+    if(bool) {
+      demoIsGoing = bool;
+      demoLaunch();      
+    }
+  });
+
+  socket.on('newData', function(){
+
+    console.log(demoConnections[locationAtTheMoment]);
+    console.log('newData');
+    socket.emit('locationIndex', locationAtTheMoment);
+    socket.emit('seatData', demoConnections[locationAtTheMoment]);
+  })
+
+  function seatBought(seatId) {
+    console.log(seatId);
+    socket.broadcast.emit('seatBought', demoConnections[locationAtTheMoment][seatId]);
+    //console.log(connections[locationAtTheMoment][seatId]);
+  }
+
+  function demoHasEnded() {
+      console.log("Demo has ended");
+      demoIsGoing = false;
+      demoConnections = connections;
+      /*
+      for(var i in connections) {
+        var table = {};
+        for(var seat in connections[i]){
+          if(connections[i].hasOwnProperty(seat)) {
+            console.log(seat);
+            table[seat] = {id: seat, next: connections[i][seat].next, start: connections[i][seat].start, end: connections[i][seat].end, description: connections[i][seat].description};
+          }
+          demoConnections.push(table);
+        }
+      } */
+      /*   
+      for(var i in connections) {
+        demoConnections.push(connections[i]);
+      }*/
+      locationAtTheMoment = 0;
+      demoIsGoing = false;
+      socket.broadcast.emit('isGoing', demoIsGoing);
+  }
+
+  function demoLaunch() {
+    console.log('Demolaunch');
+    socket.broadcast.emit('isGoing', demoIsGoing); 
+  }
+
+  function next(){
+    if(demoIsGoing && locationAtTheMoment < (locations.length - 1)) {
+      socket.emit('seatData', demoConnections[locationAtTheMoment]);
+      socket.broadcast.emit('nextConnection', demoConnections[locationAtTheMoment]);
+    } else {
+      demoHasEnded()
+    }
+  }
+
+
+
+});
+
+/*
+io.on('nextConnection', function(){
+  locationAtTheMoment++;
+  client.broadcast.emit('nextConnection', connections[locationAtTheMoment]);
+});*/
+/*
+ Istuin palautetaan koko pakettina + lisätty id.
+ */
+
+
+
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+
+
+
+function generateData() {
+  var seatMaintenance = {};
+  for(var locationIndex in locations) {
+    var newConnection = {};
+    for (var seatId = 1; seatId <= amountOfSeats; seatId++) {
+      var isNotDefined = seatMaintenance.seatId === undefined;
+      if(isNotDefined || locationIndex <= locations.valueOf(seatMaintenance[seatId].end)) {
+        var randomIndex = Math.floor((Math.random() * (6)));
+        newConnection[seatId] = {id: seatId};
+        if(locationIndex < randomIndex && randomIndex < locations.length) {
+          var newClient = {start: locations[locationIndex], end: locations[randomIndex]}
+
+          var randomName = Math.floor((Math.random() * (50)));
+          if(randomName < names.length) {
+            var randomDescription = Math.floor((Math.random() * (descriptions.length)));
+            newConnection[seatId].name = names[randomName];
+            newConnection[seatId].description = descriptions[randomDescription];
+          }
+          /*
+           Päivitetään aikaisempaan tietoon milloin tulee next.
+           */
+          if(isNotDefined) {
+            if(locationIndex != 0) {
+              console.log(locationIndex);
+              console.log("s161 " + connections[0]);
+              connections[0][seatId].next = locations[locationIndex];
+            }
+          } else if(seatMaintenance[seatId].start !== undefined) {
+            connections[locationMap[seatMaintenance[seatId].start]][seatId][next] = locations[locationIndex];
+          }
+          newConnection[seatId].start = locations[locationIndex];
+          newConnection[seatId].end = locations[randomIndex];
+          seatMaintenance[seatId] = {start: locations[locationIndex], end: locations[randomIndex]};
+        }
+
+      }
+
+    }
+   /*
+    for (var key in newConnection) {
+      if (newConnection.hasOwnProperty(key)) {
+        var obj = newConnection[key];
+        for (var prop in obj) {
+          // important check that this is objects own property
+          // not from prototype prop inherited
+          if(obj.hasOwnProperty(prop)){
+            console.log(key + " - " + obj[prop]);
+          }
+        }
+      }
+    }*/
+    connections.push(newConnection)
+  }
+}
+
+generateData();
+

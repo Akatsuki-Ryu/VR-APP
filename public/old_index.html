@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='train'>
+<head>
+  <meta charset="utf-8">
+  <title>Train test 1</title>
+  <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body ng-controller="SeatsController as seats">
+<header>
+  <h1>Juna</h1>
+</header>
+
+
+<div class="container">
+  <!-- Train -->
+
+  <div class="train">
+
+
+    <!-- Carriage 1 -->
+    <div class='carriage-wrapper' id="t1" ng-init="carriageId='A'">
+
+          
+          <!-- Part 1 -->
+
+          <!-- Carriage 1 Seat-section 1 -->
+
+      <div class='seat-section back p1 r1'>
+            
+            <div class='seat A' ng-init="seatId = 1" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 2" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+
+          </div>
+
+          
+          <!-- Part 2 -->
+          
+          <!-- Carriage 1 Part 2 Seat-section 1 -->
+          
+          <div class='seat-section back p2 r1'>
+            
+            <div class='seat A' ng-init="seatId = 3" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 4" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 5" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat A' ng-init="seatId = 6" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+          </div>
+          
+          <!-- Train 1 Part 2 Seat-section 2 -->
+
+          <div class='seat-section back p2 r2'>
+            
+            <div class='seat A' ng-init="seatId = 7" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 8" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 9" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat D' ng-init="seatId = 10" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+
+          </div>
+          
+          <!-- Train 1 Part 2 Seat-section 3 -->
+          
+          <div class='seat-section back p2 r3'>
+
+            <div class='seat A' ng-init="seatId = 11" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 12" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 13" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat D' ng-init="seatId = 14" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>                
+            
+          </div>
+          
+          
+          <!-- Train 1 Part 2 Seat-section 4 -->
+          
+          <div class='seat-section back p2 r4'>
+            
+            <div class='seat A' ng-init="seatId = 15" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 16" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 17" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat D' ng-init="seatId = 18" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+          </div>          
+          <!-- Train 1 Part 2 Seat-section 5 -->
+          
+          <div class='seat-section front p2 r5'>
+
+            <div class='seat A' ng-init="seatId = 19" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 20" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 21" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat D' ng-init="seatId = 22" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>            
+            
+          </div>
+          
+          <!-- Train 1 Part 2 Seat-section 6 -->
+          
+          <div class='seat-section front p2 r6'>
+
+            <div class='seat A' ng-init="seatId = 23" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 24" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 25" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat D' ng-init="seatId = 26" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+          </div>
+          
+          <!-- Train 1 Part 2 Seat-section 7 -->
+          
+          <div class='seat-section back p2 r7'>
+
+            <div class='seat A' ng-init="seatId = 27" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 28" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 29" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat D' ng-init="seatId = 30" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+          </div>
+          
+          <!--Train 1 Part 2 Seat-section 8 -->
+          
+          <div class='seat-section back p2 r8'>
+
+            <div class='seat A' ng-init="seatId = 31" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 32" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 33" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat D' ng-init="seatId = 34" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+          </div>
+          
+          <!--Train 1 Part 2 Seat-section 9 -->
+          
+          <div class='seat-section back p2 r9'>
+
+            <div class='seat A' ng-init="seatId = 35" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 36" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 37" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat D' ng-init="seatId = 38" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+          </div>
+          
+          <!--Train 1 Part 2 Seat-section 10 -->
+          
+          <div class='seat-section back p2 r10'>
+
+            <div class='seat A' ng-init="seatId = 39" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 40" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 41" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat D' ng-init="seatId = 42" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+          </div>
+          
+          <!--Train 1 Part 2 Seat-section 11  -->
+          
+          <div class='seat-section front p2 r11'>
+
+            <div class='seat A' ng-init="seatId = 43" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 44" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 45" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat D' ng-init="seatId = 46" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+          </div>
+
+          <!--Train 1 Part 2 Seat-section 12  -->
+          
+          <div class='seat-section front p2 r12'>
+
+            <div class='seat A' ng-init="seatId = 47" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 48" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 49" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat D' ng-init="seatId = 50" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+          </div>
+
+          <!--Train 1 Part 2 Seat-section 13  -->
+          
+          <div class='seat-section front p2 r13'>
+
+            <div class='seat A' ng-init="seatId = 51" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 52" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 53" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat D' ng-init="seatId = 54" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+          </div>      
+
+          <!-- Train Part 3 -->
+
+          <!-- Seat-section 1 -->
+
+          <div class='seat-section front p3 r1'>
+    
+            <div class='seat A' ng-init="seatId = 55" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 56" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 57" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 2 -->
+
+          <div class="seat-section back p3 r2">
+
+              <div class='seat A' ng-init="seatId = 58" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 59" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 60" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>    
+          
+          </div>          
+          
+          <!-- Seat-section 3 -->          
+
+          <div class="seat-section front p3 r3">
+ 
+              <div class='seat A' ng-init="seatId = 61" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat B' ng-init="seatId = 62" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>
+            
+            <div class='seat C' ng-init="seatId = 63" ng-click="seats.selectSeat( {{carriageId + seatId }})">
+              <img ng-src='seats.image[0]' ng-show="seats.isBooked( {{carriageId + seatId }} )"/>
+              <img ng-src='seats.image[1]' ng-show="seats.isEmpty( {{carriageId + seatId }})">
+              <p>seatId</p>
+            </div>  
+          
+          
+          </div>
+
+          <div class="carriage" id="c1"></div>
+
+        </div>
+
+        <!-- Carriage 2 -->
+        <div class='carriage-wrapper' id="t2">
+          
+          <!-- Part 1 -->
+
+          <!-- Seat-section 1 -->
+          
+          <div class='seat-section back p1 r1'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+
+          </div>
+
+          <!-- Seat-section 2 -->
+
+          <div class='seat-section back p1 r2'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+
+          </div>
+          
+          <!-- Seat-section 3 -->
+          
+          <div class='seat-section back p1 r3'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 4 -->
+          
+          <div class='seat-section back p1 r4'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 5 -->
+          
+          <div class='seat-section back p1 r5'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>          
+          
+          <!-- Seat-section 6 -->
+          
+          <div class='seat-section back p1 r6'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 7 -->
+          
+          <div class='seat-section back p1 r7'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 8 -->
+          
+          <div class='seat-section front p1 r8'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>    
+
+           <!-- Seat-section 9 -->
+          
+          <div class='seat-section front p1 r9'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 10 -->
+          
+          <div class='seat-section front p1 r10'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 11 -->
+          
+          <div class='seat-section front p1 r11'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>  
+
+          <!-- Seat-section 12 -->
+          
+          <div class='seat-section front p1 r12'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>                         
+
+          <!-- Seat-section 13 -->
+          
+          <div class='seat-section front p1 r13'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>             
+
+
+          <!-- Seat-section 14 -->
+          
+          <div class='seat-section front p1 r14'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 15 -->
+          
+          <div class='seat-section back p1 r15'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 16 -->
+          
+          <div class='seat-section back p1 r16'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div> 
+
+          <!-- Seat-section 17 -->
+          
+          <div class='seat-section back p1 r17'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>         
+
+
+          <!-- Seat-section 18 -->
+          
+          <div class='seat-section front p1 r18'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>          
+
+          <!-- Seat-section 19 -->
+          
+          <div class='seat-section front p1 r19'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div> 
+
+          <!-- Seat-section 20 -->
+          
+          <div class='seat-section front p1 r20'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>                        
+
+          <div class="carriage" id="c2"></div>
+
+        </div>
+                <!-- Carriage 3 -->
+        <div class='carriage-wrapper' id="t3">
+
+          <!-- Part 1 -->
+
+          <!-- Seat-section 1 -->
+          
+          <div class='seat-section front p1 r1'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 2 -->
+          
+          <div class='seat-section front p1 r2'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 3 -->
+          
+          <div class='seat-section back p1 r3'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 4 -->
+          
+          <div class='seat-section front p1 r4'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+          <!-- Seat-section 5 -->
+          
+          <div class='seat-section front p1 r5'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>                    
+                              
+
+          <!-- Part 2 -->
+
+          <!-- Seat-section 1 -->
+          
+          <div class='seat-section back p2 r1'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+          <!-- Part 3 -->
+          
+          <!-- Seat-section 1 -->
+          
+          <div class='seat-section back p3 r1'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+          
+          <!-- Seat-section 2 -->
+          
+          <div class='seat-section back p3 r2'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 3 -->
+          
+          <div class='seat-section back p3 r3'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+
+          </div>          
+          
+          <!-- Seat-section 4 -->
+          
+          <div class='seat-section back p3 r4'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 5 -->
+          
+          <div class='seat-section back p3 r5'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>          
+
+
+          <!-- Seat-section 6 -->
+          
+          <div class='seat-section front p3 r6'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+
+          <!-- Seat-section 7 -->
+          
+          <div class='seat-section front p3 r7'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>                  
+
+          <!-- Seat-section 8 -->
+          
+          <div class='seat-section front p3 r8'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+
+          </div>          
+          
+          <!-- Seat-section 10 -->
+          
+          <div class='seat-section front p3 r9'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+
+          </div>
+
+          <!-- Seat-section 9 -->
+          
+          <div class='seat-section front p3 r10'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+
+          </div>
+
+          <!-- Seat-section 11 -->
+          
+          <div class='seat-section front p3 r11'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>          
+            <div class="carriage" id="c3"></div>
+        
+        </div>
+        
+        <!-- Carriage 4 -->
+
+        <div class='carriage-wrapper' id="t4">
+          
+          <!-- Part 1 -->
+
+          <!-- Seat-section 1 -->
+          
+          <div class='seat-section back p1 r1'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+                     
+          </div>
+          
+          <!-- Part 2 -->
+          
+          <!-- Seat-section 1 -->
+          
+          <div class='seat-section front p2 r1'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+
+          </div>
+          
+          <!-- Seat-section 2 -->
+
+          <div class='seat-section back p2 r3'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+
+          </div>
+
+          <!-- Seat-section 3 -->
+
+          <div class='seat-section front p2 r2'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+
+          </div>
+          
+
+          <!-- Part 3 (right side, fist and last of rows) -->
+          
+          
+          <!-- Seat-section 1 -->
+          
+          <div class='seat-section back p3 r1'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+          
+          <!-- Seat-section 2 -->
+
+          <div class='seat-section front p3 r2'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+        
+
+          <!-- Part 4 -->
+
+          <!-- Seat-section 1 -->
+          
+          <div class='seat-section back p4 r1'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>
+          
+          <!-- Seat-section 2 -->
+
+          <div class='seat-section back p4 r2'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>
+
+
+          <div class='seat-section back p4 r3'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>
+          
+          
+          <!-- Seat-section 4 -->
+          
+          <div class='seat-section back p4 r4'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>
+          
+          <!-- Seat-section 5 -->
+          
+          <div class='seat-section back p4 r5'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>
+          
+          <!-- Seat-section 6 -->
+          
+          <div class='seat-section back p4 r6'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+          </div>
+          
+          <!-- Seat-section 7 -->
+          
+          <div class='seat-section front p4 r7'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>
+          
+          <!--Seat-section 8 -->
+          
+          <div class='seat-section front p4 r8'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>
+          
+          <!--Seat-section 9 -->
+          
+          <div class='seat-section front p4 r9'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>
+
+          <!-- Seat-section 10 -->
+
+          <div class='seat-section front p4 r10'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>
+
+          <!-- Seat-section 11 -->
+          
+          <div class='seat-section front p4 r11'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+
+          </div>
+          
+          <!-- Seat-section 12 -->
+          
+          <div class='seat-section front p4 r12'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>
+          
+          <!--Seat-section 13 -->
+          
+          <div class='seat-section front p4 r13'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>
+          
+          <!--Seat-section 14 -->
+          
+          <div class='seat-section front p4 r14'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>
+
+          <!-- Seat-section 15 -->
+
+          <div class='seat-section front p4 r15'>
+
+            <div class='seat A'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat B'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat C'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+            
+            <div class='seat D'>
+              <div class='seat-image'></div>
+              <h1>Aleksi</h1>
+            </div>
+    
+          </div>          
+
+          <div class="carriage" id="c4"></div>
+
+        </div>
+
+  <!-- MUISTIINPANOJA:
+          Seuraavaksi 1) Pohdi kuinka käännät tuolit. 2) muodostetaan css rakenne 3-7 vaunuihin. Tämän lisäksi. 3) Mieti kuinka tehdään istuimista uniikkeja  -->
+
+      </div>
+    </div>
+  </body>
