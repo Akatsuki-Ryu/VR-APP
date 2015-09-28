@@ -66,7 +66,9 @@
 	** Main Controller
 	**/
 
-	app.controller('SeatsController', ['socket', function(socket) {
+	app.controller('SeatsController', ['socket', '$timeout', function(socket, $timeout) {
+
+		
 
 		var controller = this;
 		this.seats = {};
@@ -74,8 +76,35 @@
 		this.locationData = ["HELSINKI", "HÄMEENLINNA", "TAMPERE", "KOKKOLA", "OULU"];
 		this.locationMap = {"HELSINKI": 0, "HÄMEENLINNA": 1, "TAMPERE": 2, "KOKKOLA": 3, "OULU": 4};
 		this.idConverter = {};
+
+		/* Panel hallinnointia
+		**/
+
+
+
+		this.summaryHasBeenClicked = false;
+		this.tasksHasBeenClicked = false;
+
+		this.updateSummaries = function() {
+			for(var i in carriageArray) {
+				this.carriageArray[i].summaries = [{description: "Vessa likainen"}, {description: "Vaunun lämpötila matala"}, {description: "Vaunun lämpötila korkea"}, {description: "Vaunusta kuuluu melua"}];
+			}			
+		}
+		/** Ehtoja, joiden avulla pystytään hallinoimaan datan generoimista ylläpitö
+		**/
+
 		this.demoIsGoing = false;
+		/** Voidaan hyödyntää lisäämällä latausikkuna, kun serveri lähettää uutta dataa
+			TODO: latausikkuna
+		*/
+
+		this.dataHasGenerated = false;
+		/** Estää, ettei pystytä aloittamaan uutta kierrosta, ennen kuin data on muutettu
+			TODO: latausikkuna
+		*/
+
 		this.restartingData = false;
+
 		this.pageIndex = 0;
 
 
@@ -86,6 +115,7 @@
 			this.booleanCarriages[this.pageIndex] = false;
 			this.booleanCarriages[0] = true;
 			this.pageIndex = 0;
+			this.updateSummaries();
 			var reset = {};
 			for(var seat in this.seats){
 				if(this.seats.hasOwnProperty(seat)) {
@@ -97,8 +127,6 @@
 			}
 			this.seats = {}; 
 			this.seats = reset;
-			console.log(this.seats);
-			console.log('restart');
 			this.locationIndex = 0;
 			socket.emit('newData')
 		}
@@ -110,8 +138,8 @@
 
 
 		this.generateSeatData = function(carriage, part, row, seat) {
+			this.updateSummaries();
 			if(carriage !== "t"+carriageIterator) {
-				console.log("helllo");
 				carriageIterator++;
 				seatNumber = 0;
 			}
@@ -130,12 +158,11 @@
 
 		this.hasTask = function(id) {
 
-			return this.seats !== undefined && this.seats[id].description !== undefined && this.location === this.seats[id].start.toUpperCase();
+			return this.seats !== undefined && this.seats[id]["description"] !== undefined && this.location === this.seats[id].start.toUpperCase();
 		};
 
 
 		this.selectedSeatIsEmpty = function() {
-			console.log()
 			if(this.selectedSeat === undefined) {
 				return false;
 			} else {
@@ -180,6 +207,10 @@
 			return result;
 		};
 
+		/**
+			Hyödynnetään paneelissa.
+		**/
+
 		this.tasks = function(carriageNumber) {
 			var seatList = carriageArray[carriageNumber-1].seats;
 			var taskId = [];
@@ -190,6 +221,10 @@
 			return taskId;
 		};
 
+		this.carriageHasTasks = function(carriageNumber) {
+			var r = this.tasks(carriageNumber);
+			return r.length !== 0;			
+		}
 
 		function valueOfLocation(loctn) {
 			if(loctn===undefined) {
@@ -214,13 +249,22 @@
 		};
 
 		this.changeLocation = function() {
-						this.searchingIsGoing = false;
+			console.log("changeLocation clicked");
+			this.updateSummaries();
+			this.searchingIsGoing = false;
+			// Estää sen ettei käyttäjä voi tuplaklikata.
+			if(!this.dataHasGenerated || this.restartingData) {
+				console.log("et pysty siirtymään seuraavaan")
+				return;
+			} 
 			if(this.locationIndex < (locations.length - 2)) {
+				this.dataHasGenerated = false;
 				socket.emit('nextConnection');
 				controller.locationIndex++;
 				controller.location = locations[controller.locationIndex];
 				controller.travelSection = locations[controller.locationIndex] + " - " + locations[controller.locationIndex + 1];
 			} else if(this.locationIndex === (locations.length - 2)) {
+				this.dataHasGenerated = false;				
 				this.travelSection = "Kiitos Matkasta!"
 				socket.emit('nextConnection');
 				controller.dataRestart();
@@ -232,25 +276,21 @@
 		this.isBooked = function (carriage, part, row, seat) {
 			var seatId = this.idConverter[carriage+part+row+seat];
 			var result = this.seats[seatId].start !== undefined && this.locationIndex >= this.locationMap[this.seats[seatId].start] && this.locationIndex < this.locationMap[this.seats[seatId].end];
-			if(this.seats[seatId].end !== undefined && !result) {
-				//console.log(this.locationIndex >= this.locationMap[this.seats[seatId].start]);
-				//console.log("ola " + this.seats[seatId].end + " " + this.locationMap[this.seats[seatId].end]);
-			}
+
 			return result;
 		};
 
+		// Palauttaa kaikki mahdolliset paikkakunnat mihin matkustaja voi ostaa lipun.
 
 		this.canTravel = function(boolean) {
 			var lastLocIndex = locations.length;
 			if(this.locationIndex  === lastLocIndex-1) {
 				return [];
 			}
-			//console.log(this.selectedSeat);
+
 			console.log(this.locationIndex);
 			if(this.selectedSeat !== undefined && this.selectedSeat.next !== undefined) {
 				console.log(valueOfLocation(this.selectedSeat.next) < this.locationIndex);	
-			} else {
-				console.log('ei nextiä');
 			}
 			
 			if(!boolean && this.selectedSeat !== undefined && (this.selectedSeat.next !== undefined && valueOfLocation(this.selectedSeat.next) > this.locationIndex)) {
@@ -263,13 +303,16 @@
 
 		this.searchingIsGoing = false;
 		this.seatSection = [];
+
 		this.searchButtonIsClicked = false;
+
 		this.searchClicked = function() {
 			this.searchButtonIsClicked = !this.searchButtonIsClicked;
 		};
 
+
 		this.showFreeSeatsFromCarriage = function(travelLocation) {
-			console.log("adsf");
+
 			var carriageId = "t" + this.pageIndex;
 			var index = 0;
 			for(var seatIndex in this.seatSection) {
@@ -294,8 +337,13 @@
 					counter ++;
 				}
 			}
-			this.searchingIsGoing = true
+			this.closeFooter();
+			this.searchingIsGoing = true;
 		};
+
+		/**
+			Tämän voisi muokkaa paremmaksi. Löytyy istuin objectilta suoraan tieto, joka ottaa huomioon searchingIsGoing
+		**/
 
 		this.isValid = function(seatId){
 			return this.searchingIsGoing && this.seats[seatId].isFreeFromSearchingRange;
@@ -309,10 +357,37 @@
 			}
 		};
 
+	/**
+		Notification window
+	**/
+
+	this.notificationDescriptions = [];
+	/**
+		Serveri lähettää yksittäisen notificaation
+	**/
+	socket.on("newNotification", function(data){
+		console.log('newNotification');
+		if(data !== undefined && data.description !== undefined) {
+			data["visible"] = true;
+			$timeout(
+				function(){ 
+				data.visible =false
+				console.log('Notification end');
+				}, 15000);
+			controller.notificationDescriptions.push(data);
+		}
+	})
+
+
+
+	/**
+		Vaunusta toiseen liikkuminen
+	**/
+
+
 		this.booleanCarriages = [true, false, false, false, false];
 
 		this.isNotLastCarriage = function(index) {
-			console.log(index < this.booleanCarriages.size);
 			return index < this.booleanCarriages.size;
 		}
 
@@ -332,18 +407,16 @@
 			this.booleanCarriages[index - 1] = true;
 		}
 
-		/* Tracking carriage
-		*/
 
 		this.nextCarriage = function(index) {
-			return index !== 3;
+			return index !== this.booleanCarriages.length - 2;
 		}
 
-		this.consoleTest = function(text) {
-			console.log(text);
-		}
+	/* Sokettikomennot
+	**/
 
-
+	/** Lähettää missä kohta junan reittiä olemme
+	*/
 
 		socket.on("locationIndex", function(data) {
 			console.log('locationIndex');
@@ -362,37 +435,48 @@
 				controller.travelSection = "Kiitos Matkasta!"
 			}
 		});
+		
+		/** Serveri lähettää käyttäjälle setin dataa
+		TODO: Kun seatData lähetys on valmis annetaan käyttäjälle vaihtoehtoja
+		*/
 
 
 		socket.on("seatData", function(data) {
 			console.log("SeatData");
-			console.log(data);
 			for(var key in data) {
 				if(data.hasOwnProperty(key)) {
 					for(prop in data[key]) {
 						if(data[key].hasOwnProperty(prop)){
+							console.log(key);
+							console.log(controller.seats[key]);
+							console.log(prop);
 							controller.seats[key][prop] = data[key][prop];
 						}
 					}
 				}
 			}
-			console.log(controller.seats);
-			console.log("Uusi Data");
 			controller.closeFooter()
-
-			controller.restartingData = true; 
+			controller.dataHasGenerated = true;
+			controller.restartingData = false; 
 		});
+
+		/** Serveri lähettää uuden setin dataa Sama kuin ylempi, mutta client-side muuttaa locationIndexiä
+		TODO: Kun seatData lähetys on valmis annetaan käyttäjälle vaihtoehtoja
+		*/
 
 		socket.on('nextConnection', function(data){
 			console.log("nextConnection");
+			controller.updateSummaries();
+			controller.dataHasGenerated = false;
 			controller.locationIndex++;
 			controller.location = locations[controller.locationIndex];
 			controller.travelSection = locations[controller.locationIndex] + " - " + locations[controller.locationIndex + 1];
 			for(var key in data) {
 				if(data.hasOwnProperty(key)) {
-					for(prop in data[key]) {
+					for(var prop in data[key]) {
 						if(data[key].hasOwnProperty(prop)){
 							if(controller.seats[key].description !== undefined){
+
 								controller.seats[key].description = undefined
 							}
 							controller.seats[key][prop] = data[key][prop];
@@ -400,19 +484,20 @@
 					}
 				}
 			}
+
+			controller.dataHasGenerated = true;
+
 		});
+
 
 		socket.on('seatBought', function(data) {
 			console.log('seatBought');
 			controller.seats[data.id] = data;
 		});
 
-
-
 		socket.on('isGoing', function(data){
 			console.log("isgoing");
 			if(data) {
-				console.log("jpi");
 				controller.demoIsGoing = true;
 			} else {
 				this.demoIsGoing = false;
@@ -423,22 +508,11 @@
 
 	}]);
 
-	/*
-	app.factory('Seats', function($resource){
-		var seatServer = $resource('/seatData');
-		return {
-			seatsQuery: function() {
-				return seatServert.query();
-			}
-		};
-
-	});*/
-
 
 
 
 	/**
-	 * Generate  SeatData helper
+	 * SeatDatageneation helper
 	 * */
 
 	var seatNumber=0;
@@ -466,7 +540,7 @@
 
 	var c1Parts = [c1p1, c1p2, c1p3];
 
-	var t1 = {id: "t1", parts: c1Parts, seats: []};
+	var t1 = {id: "t1", parts: c1Parts, seats: [], summaries: [{description: "Vessa likainen"}, {description: "Vaunun lämpötila matala"}, {description: "Vaunun lämpötila korkea"}, {description: "Vaunusta kuuluu melua"}]};
 
 	//Carriage 2
 
@@ -474,7 +548,7 @@
 
 	var c2Parts = [c2p1];
 
-	var t2 = {id: "t2", parts: c2Parts, seats: []};
+	var t2 = {id: "t2", parts: c2Parts, seats: [], summaries: [{description: "Vessa likainen"}, {description: "Vaunun lämpötila matala"}, {description: "Vaunun lämpötila korkea"}, {description: "Vaunusta kuuluu melua"}]};
 
 	//carriage 3
 
@@ -484,7 +558,7 @@
 
 	var c3Parts = [c3p1, c3p2, c3p3];
 
-	var t3 = {id: "t3", parts: c3Parts, seats: []};
+	var t3 = {id: "t3", parts: c3Parts, seats: [], summaries: [{description: "Vessa likainen"}, {description: "Vaunun lämpötila matala"}, {description: "Vaunun lämpötila korkea"}, {description: "Vaunusta kuuluu melua"}]};
 
 	//carriage 4
 
@@ -495,13 +569,13 @@
 
 	var c4Parts = [c4p1, c4p2, c4p3, c4p4];
 
-	var t4 = {id: "t4", parts: c4Parts, seats: []};
+	var t4 = {id: "t4", parts: c4Parts, seats: [], summaries: [{description: "Vessa likainen"}, {description: "Vaunun lämpötila matala"}, {description: "Vaunun lämpötila korkea"}, {description: "Vaunusta kuuluu melua"}]};
 
 
 	var carriageArray = [t1, t2, t3, t4];
 
 
-	/**Image data TODO
+	/** Image data TODO seatImages on pahasti hardcodattu.
 	 * */
 
 	var seatImages = ["/images/red-seat.svg", "/images/green-seat.svg", "/images/vr-logo.png", "/images/startpicture.jpg"];
