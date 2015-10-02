@@ -1,0 +1,28 @@
+Todo
+
+- Näkymä, jossa koko vaunu näkyy vasemmalla ja oikealla isompi tila
+- vanhan ja aikaisemmman näkymän yhdistäminen
+
+- Incoming message
+	- Esimerkkitapauksia 
+		- Valot ovat pois vaunussa 7
+		- Korkea lämpötila vaunussa X
+		- Uusi tilaus
+	- Ponnahtaa yläpalkkiin
+	- Serveri lähettää incoming messagen
+	- Ajastin joka x sekuntti
+	- Lisäominaisuutena tilaus
+
+- Seuraavanaseman yhteenvetoikkuna
+	- Kuinka paljon tulee kyytiin eri vaunuihin
+
+Spesifit asiat
+- Vaunun numero näkyviin (alareunaan)
+- Vähemmän tehtäviä
+
+Todos
+- Puhdista koodi
+- Lisää koodi githubiin
+
+- HTML:n parantaminen...
+- Parempi nuoli
