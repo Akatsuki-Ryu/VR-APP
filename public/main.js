@@ -66,9 +66,43 @@
 	** Main Controller
 	**/
 
+
 	app.controller('SeatsController', ['socket', '$timeout', function(socket, $timeout) {
 
-		
+		//Pelin Aloitus
+		this.nameSent = false;
+
+		this.nameSentAndApproved = false;
+
+		this.newName = undefined;
+
+		this.newDemo = function() {
+			if(this.newName !== undefined) {
+				this.nameSent = true;
+				socket.emit('newDemo')
+			}
+		}
+
+		this.signInName = undefined;		
+
+		this.signInDemo = function() {
+			if(this.newName !== undefined) {
+				this.nameSent = true;
+				socket.emit('signInDemo')
+			}
+		}
+
+		socket.on('nameIsInUse', function(name) {
+			this.nameSent = false;
+			this.newName = undefined;
+
+		});
+
+		socket.on('demoNotFound', function(name) {
+			this.nameSent = false;
+			this.signInName = undefined;
+
+		});
 
 		var controller = this;
 		this.seats = {};
@@ -103,13 +137,16 @@
 			TODO: latausikkuna
 		*/
 
-		this.restartingData = false;
 
 		this.pageIndex = 0;
 
+		this.canContinue = function() {
+			return this.demoIsGoing && this.dataHasGenerated; 
+		}
+
 
 		this.dataRestart = function() {
-			this.restartingData = true; 
+			this.dataHasGenerated = false; 
 			this.closeFooter();
 			this.demoIsGoing = false;
 			this.booleanCarriages[this.pageIndex] = false;
@@ -253,21 +290,21 @@
 			this.updateSummaries();
 			this.searchingIsGoing = false;
 			// Estää sen ettei käyttäjä voi tuplaklikata.
-			if(!this.dataHasGenerated || this.restartingData) {
+			if(!this.dataHasGenerated) {
 				console.log("et pysty siirtymään seuraavaan")
 				return;
-			} 
-			if(this.locationIndex < (locations.length - 2)) {
+			} else {
 				this.dataHasGenerated = false;
-				socket.emit('nextConnection');
-				controller.locationIndex++;
-				controller.location = locations[controller.locationIndex];
-				controller.travelSection = locations[controller.locationIndex] + " - " + locations[controller.locationIndex + 1];
-			} else if(this.locationIndex === (locations.length - 2)) {
-				this.dataHasGenerated = false;				
-				this.travelSection = "Kiitos Matkasta!"
-				socket.emit('nextConnection');
-				controller.dataRestart();
+				if(this.locationIndex < (locations.length - 2)) {
+					socket.emit('nextConnection');
+					controller.locationIndex++;
+					controller.location = locations[controller.locationIndex];
+					controller.travelSection = locations[controller.locationIndex] + " - " + locations[controller.locationIndex + 1];
+				} else if(this.locationIndex === (locations.length - 2)) {				
+					this.travelSection = "Kiitos Matkasta!"
+					socket.emit('nextConnection');
+					controller.dataRestart();
+				}
 			}
 		};
 
@@ -366,12 +403,12 @@
 		Serveri lähettää yksittäisen notificaation
 	**/
 	socket.on("newNotification", function(data){
-		console.log('newNotification');
+		console.log('newNotification ' + data);
 		if(data !== undefined && data.description !== undefined) {
 			data["visible"] = true;
 			$timeout(
 				function(){ 
-				data.visible =false
+				data.visible = false
 				console.log('Notification end');
 				}, 15000);
 			controller.notificationDescriptions.push(data);
@@ -407,6 +444,15 @@
 			this.booleanCarriages[index - 1] = true;
 		}
 
+		this.carriageSelected = function(index) {
+			console.log("carriageSelected")
+			this.searchingIsGoing = false;
+			this.closeFooter()
+			this.booleanCarriages[index] = true;
+			this.booleanCarriages[this.pageIndex] = false;
+			this.pageIndex = index;
+			
+		}
 
 		this.nextCarriage = function(index) {
 			return index !== this.booleanCarriages.length - 2;
@@ -425,14 +471,13 @@
 				controller.locationIndex = data;
 				controller.location = locations[controller.locationIndex];
 				controller.travelSection = locations[controller.locationIndex] + " - " + locations[controller.locationIndex + 1];
-			} else {
+			} else { 
+				controller.booleanCarriages[0] = true;
+				controller.booleanCarriages[controller.pageIndex] = false;
 				controller.demoIsGoing = false;
 				controller.travelSection = "Kiitos matkasta!";
 				controller.closeFooter()
-				controller.booleanCarriages[controller.pageIndex] = false;
-				controller.booleanCarriages[0] = true;
 				controller.pageIndex = 0;
-				controller.travelSection = "Kiitos Matkasta!"
 			}
 		});
 		
@@ -443,21 +488,21 @@
 
 		socket.on("seatData", function(data) {
 			console.log("SeatData");
+			controller.nameSentAndApproved = true;
 			for(var key in data) {
 				if(data.hasOwnProperty(key)) {
 					for(prop in data[key]) {
 						if(data[key].hasOwnProperty(prop)){
-							console.log(key);
-							console.log(controller.seats[key]);
-							console.log(prop);
+							//console.log(key);
+							//console.log(controller.seats[key]);
+							//console.log(prop);
 							controller.seats[key][prop] = data[key][prop];
 						}
 					}
 				}
 			}
-			controller.closeFooter()
+			controller.closeFooter();
 			controller.dataHasGenerated = true;
-			controller.restartingData = false; 
 		});
 
 		/** Serveri lähettää uuden setin dataa Sama kuin ylempi, mutta client-side muuttaa locationIndexiä
@@ -465,6 +510,7 @@
 		*/
 
 		socket.on('nextConnection', function(data){
+			controller.nameSentAndApproved = true;
 			console.log("nextConnection");
 			controller.updateSummaries();
 			controller.dataHasGenerated = false;
@@ -578,7 +624,7 @@
 	/** Image data TODO seatImages on pahasti hardcodattu.
 	 * */
 
-	var seatImages = ["/images/red-seat.svg", "/images/green-seat.svg", "/images/vr-logo.png", "/images/startpicture.jpg"];
+	var seatImages = ["/images/red-seat.svg", "/images/green-seat.svg", "/images/siemens-logo.png", "/images/menu.jpg"];
 
 	var carriageImages = ["/images/carriage_fix_1.svg", "/images/carriage_fix_2.svg", "/images/carriage_fix_3.svg", "/images/carriage_fix_4.svg"];
 

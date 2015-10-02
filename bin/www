@@ -3,7 +3,6 @@
 /**
  * Module dependencies.
  */
-
 var app = require('../app');
 var debug = require('debug')('aleksi:server');
 var http = require('http');
@@ -37,26 +36,31 @@ server.on('listening', onListening);
 
 /**DATA
  * */
-var data 
+
+//DYNAMIC
+
+var demoData = {};
+
+var Demo = function(connections, demoIsGoing, socket) {
+  this.connections = [];
+  for(i in connections) {
+    this.connections.push(connections[i])
+  }
+  this.demoIsGoing = false;
+  this.socketArray = [socket];
+  this.addSocket = function(socket) {
+    socketArray.push(socket);
+  }
+  this.locationAtTheMoment = 0;
+  this.nextLocation = function() {
+    this.locationAtTheMoment = this.locationAtTheMoment + 1;
+  }
+}
+/**Static for demo*/
 
 var amountOfSeats = 270;
-var locationAtTheMoment = 0;
-
-/**Ei muuteta*/
-var connections = [];
-
-
 var locations = ["HELSINKI", "HÄMEENLINNA", "TAMPERE", "KOKKOLA", "OULU"];
 var locationMap = {HELSINKI: 0, HÄMEENLINNNA: 1, TAMPERE: 2, KOKKOLA: 3, OULU: 4};
-var demoIsGoing  = false;
-
-
-/*
-* READING DESCRIPTION DATA
-* */
-
-
-
 
 var names = [
   "Minttu",
@@ -85,47 +89,143 @@ var descriptions = [
   "Opiskelija-alennus",
 ];
 
-/*
-* Data service
-* */
+var notifications = [{description: "Kavhitilaus vaunu 3 paikka 15"}, {description: "Valot eivät pala vaunussa 2"}, {description: "Juna saapuu seuraavalle asemalle 10 minuuttia myöhässä"}, {description: "Korkea lämpötilä vaunussa 4"}]
 
-  app.get('/seatData', function(req, res){
-    res.send(connections[locationAtTheMoment]);
-  });
+var timeoutArray = [20000, 50000, 30000, 60000, 80000];
 
-  app.get('/locationData', function(req, res){
-    res.send(locations);
-  });
+  function generateData() {
+  var seatMaintenance = {};
+  var connections = [];
+  for(var locationIndex in locations) {
+    var newConnection = {};
+    for (var seatId = 1; seatId <= amountOfSeats; seatId++) {
+      var isNotDefined = seatMaintenance.seatId === undefined;
+      if(isNotDefined || locationIndex <= locations.valueOf(seatMaintenance[seatId].end)) {
+        var randomIndex = Math.floor((Math.random() * (6)));
+        newConnection[seatId] = {id: seatId};
+        if(locationIndex < randomIndex && randomIndex < locations.length) {
+          var newClient = {start: locations[locationIndex], end: locations[randomIndex]}
 
-  app.get('locationIndex', function(req, res){
-    res.send(locationAtTheMoment);
-  });
+          var randomName = Math.floor((Math.random() * (250)));
+          if(randomName < names.length) {
+            var randomDescription = Math.floor((Math.random() * (descriptions.length)));
+            newConnection[seatId].name = names[randomName];
+            newConnection[seatId].description = descriptions[randomDescription];
+          }
+          /*
+           Päivitetään aikaisempaan tietoon milloin tulee next.
+           */
+          if(isNotDefined) {
+            if(locationIndex != 0) {
+              connections[0][seatId].next = locations[locationIndex];
+            }
+          } else if(seatMaintenance[seatId].start !== undefined) {
+            connections[locationMap[seatMaintenance[seatId].start]][seatId][next] = locations[locationIndex];
+          }
+          newConnection[seatId].start = locations[locationIndex];
+          newConnection[seatId].end = locations[randomIndex];
+          seatMaintenance[seatId] = {start: locations[locationIndex], end: locations[randomIndex]};
+        }
+
+      }
+
+      }
+      connections.push(newConnection)
+    }
+    return connections;
+  }
+
 
 /**
- * SOCKET.IO
- * */
-
-
+* SOCKET.IO
+* */
 
 io.on('connection', function (socket) {
-  console.log('client has connected...!');
-  console.log(connections.length);
-  
+  var testi = 1;
+  var demo = undefined;
 
-  socket.emit('locationIndex', locationAtTheMoment);
-  socket.emit('seatData', connections[locationAtTheMoment]);
-  socket.emit('isGoing', demoIsGoing);
+
+  console.log('client ' + testi + 'has connected...!');
+  testi = testi + 1;
+  
+  //When a user wants to start a new demo
+  /**
+    var Demo = function(demo.connections, demo.demoIsGoing, socketArray) {
+  this.demo.connections = demo.connections;
+  this.demo.demoIsGoing = false;
+  this.socketArray = [];
+  this.addSocket = function(socket) {
+    socketArray.push(socket);
+  }
+  this.demo.locationAtTheMoment = 0;
+  this.nextLocation = function() {
+    this.demo.locationAtTheMoment = this.demo.locationAtTheMoment + 1;
+    }
+  }
+  **/
+
+
+  socket.on('newDemo', function(name){
+    console.log('newDemo');
+    if(demoData.hasOwnProperty(name)) { 
+      nameIsInUse();
+    } else {
+      
+      createDemo(name)
+    }
+  });
+
+  function nameIsInUse() {
+    socket.emit('nameIsInUse');
+  }
+
+  function createDemo(name)  {
+      var connections = generateData();
+
+      demo = new Demo(name, connections, socket);
+      console.log(demo.connections);
+      console.log('1');
+      console.log(demo.locationAtTheMoment);
+      console.log('2');
+      socket.emit('locationIndex', demo.locationAtTheMoment);
+      console.log('3');
+      socket.emit('seatData', demo.connections[0]);
+      console.log('4');
+      socket.emit('isGoing', demo.demoIsGoing);
+  }
+
+  socket.on('signInDemo', function(name){
+    console.log('signInDemo');
+    if(demoData.hasOwnProperty(name)) {
+      demo = demoData(name);
+      addSocket()
+    } else {
+      demoNotFound();
+    }
+  })
+
+  function addSocket() {
+    demo.addSocket(socket);
+    socket.emit('locationIndex', demo.locationAtTheMoment);
+    socket.emit('seatData', demo.connections[demo.locationAtTheMoment]);
+    socket.emit('isGoing', demo.demoIsGoing);
+    notificationGenerator();
+  }
+
+  function demoNotFound() {
+    socket.emit('demoNotFound');
+  }
+
+
 
 
   /**
     Notification descriptionpaketteja
   **/
-  var notifications = [{description: "Kavhitilaus vaunu 3 paikka 15"}, {description: "Valot eivät pala vaunussa 2"}, {description: "Juna saapuu seuraavalle asemalle 10 minuuttia myöhässä"}, {description: "Korkea lämpötilä vaunussa 4"}]
-
-  var timeoutArray = [20000, 50000, 30000, 60000, 80000];
+  
 
   function notificationGenerator() {
-    /*
+    
     var i = 3;
     var enabler = Math.floor((Math.random() * (i))); 
       
@@ -136,44 +236,30 @@ io.on('connection', function (socket) {
       var randomNotification = Math.floor((Math.random() * (notifications.length)));
       var randomTimeOut = Math.floor((Math.random() * (timeoutArray.length)));
       setTimeout(function(){ 
-        socket.emit('newNotification', randomNotification)
-        socket.broadcast.emit('newNotification', randomNotification)
-      }, randomTimeOut);
+        socket.emit('newNotification', notifications[randomNotification])
+        socket.broadcast.emit('newNotification', notifications[randomNotification])
+      }, timeoutArray[randomTimeOut]);
       if(enabler > 1) {
         console.log("Notification shit ends")
       }   
-    }*/
+    }
   }
 
-  notificationGenerator();
-  /*
-  setTimeout(function(){ 
-    socket.emit(
-    'newNotification', {description: "Kavhitilaus vaunu 3 paikka 15"})
-    console.log('Ensimmäinen notification');
-    }, 30000);
-    setTimeout(function(){ socket.emit('newNotification', {description: "Kavhitilaus vaunu 3 paikka 15"})}, 15000);
-    setTimeout(function(){ socket.emit('newNotification', {description: "Kavhitilaus vaunu 3 paikka 15"})}, 20000);
-    setTimeout(function(){ socket.emit('newNotification', {description: "Kavhitilaus vaunu 3 paikka 15"})}, 40000);
-    setTimeout(function(){ 
-    console.log('viimeinen notification');
-    socket.emit('newNotification', {description: "Kavhitilaus vaunu 3 paikka 15"})
-    },  14000);
-  */
+
   socket.on('nextConnection', function(){
     console.log("seuraava");
-    locationAtTheMoment++;
+    demo.nextLocation();
     next();
   });
 
   socket.on('seatBought', function(data) {
     console.log("seatBought");
-    if(data.start === locations[locationAtTheMoment]){
-      connections[locationAtTheMoment][data.id] = data;
+    if(data.start === locations[demo.locationAtTheMoment]){
+      demo.connections[demo.locationAtTheMoment][data.id] = data;
       seatBought(data.id);
     } else {
       var index = locationMap[data.start];
-      if(locationAtTheMoment < index) {
+      if(demo.locationAtTheMoment < index) {
         conncetions[index][data.id] = data
       };
     };
@@ -183,56 +269,56 @@ io.on('connection', function (socket) {
     console.log('isGoing');
     console.log(bool);
     if(bool) {
-      demoIsGoing = bool;
+      demo.demoIsGoing = bool;
       demoLaunch();      
     }
   });
 
   socket.on('newData', function(){
     console.log('newData');
-    socket.emit('locationIndex', locationAtTheMoment);
-    socket.emit('seatData', connections[locationAtTheMoment]);
+    socket.emit('locationIndex', demo.locationAtTheMoment);
+    socket.emit('seatData', demo.connections[demo.locationAtTheMoment]);
   })
 
   function seatBought(seatId) {
     console.log(seatId);
-    socket.broadcast.emit('seatBought', connections[locationAtTheMoment][seatId]);
-    //console.log(connections[locationAtTheMoment][seatId]);
+    socket.broadcast.emit('seatBought', demo.connections[demo.locationAtTheMoment][seatId]);
+    //console.log(demo.connections[demo.locationAtTheMoment][seatId]);
   }
 
   function demoHasEnded() {
       console.log("Demo has ended");
-      demoIsGoing = false;
+      demo.demoIsGoing = false;
       /*
-      for(var i in connections) {
+      for(var i in demo.connections) {
         var table = {};
-        for(var seat in connections[i]){
-          if(connections[i].hasOwnProperty(seat)) {
+        for(var seat in demo.connections[i]){
+          if(demo.connections[i].hasOwnProperty(seat)) {
             console.log(seat);
-            table[seat] = {id: seat, next: connections[i][seat].next, start: connections[i][seat].start, end: connections[i][seat].end, description: connections[i][seat].description};
+            table[seat] = {id: seat, next: demo.connections[i][seat].next, start: demo.connections[i][seat].start, end: demo.connections[i][seat].end, description: demo.connections[i][seat].description};
           }
           demoConnections.push(table);
         }
       } */
       /*   
-      for(var i in connections) {
-        demoConnections.push(connections[i]);
+      for(var i in demo.connections) {
+        demoConnections.push(demo.connections[i]);
       }*/
-      locationAtTheMoment = 0;
-      demoIsGoing = false;
-      socket.broadcast.emit('isGoing', demoIsGoing);
+      demo.locationAtTheMoment = 0;
+      demo.demoIsGoing = false;
+      socket.broadcast.emit('isGoing', demo.demoIsGoing);
       generateData();
   }
 
   function demoLaunch() {
     console.log('Demolaunch');
-    socket.broadcast.emit('isGoing', demoIsGoing); 
+    socket.broadcast.emit('isGoing', demo.demoIsGoing); 
   }
 
   function next(){
-    if(demoIsGoing && locationAtTheMoment < (locations.length - 1)) {
-      socket.emit('seatData', connections[locationAtTheMoment]);
-      socket.broadcast.emit('nextConnection', connections[locationAtTheMoment]);
+    if(demo.demoIsGoing && demo.locationAtTheMoment < (locations.length - 1)) {
+      socket.emit('seatData', demo.connections[demo.locationAtTheMoment]);
+      socket.broadcast.emit('nextConnection', demo.connections[demo.locationAtTheMoment]);
       console.log("seatData and nextConnection emitted");
       notificationGenerator();
     } else {
@@ -240,14 +326,12 @@ io.on('connection', function (socket) {
     }
   }
 
-
-
 });
 
 /*
 io.on('nextConnection', function(){
-  locationAtTheMoment++;
-  client.broadcast.emit('nextConnection', connections[locationAtTheMoment]);
+  demo.locationAtTheMoment++;
+  client.broadcast.emit('nextConnection', demo.connections[demo.locationAtTheMoment]);
 });*/
 /*
  Istuin palautetaan koko pakettina + lisätty id.
@@ -318,48 +402,5 @@ function onListening() {
 
 
 
-function generateData() {
-  var seatMaintenance = {};
-  for(var locationIndex in locations) {
-    var newConnection = {};
-    for (var seatId = 1; seatId <= amountOfSeats; seatId++) {
-      var isNotDefined = seatMaintenance.seatId === undefined;
-      if(isNotDefined || locationIndex <= locations.valueOf(seatMaintenance[seatId].end)) {
-        var randomIndex = Math.floor((Math.random() * (6)));
-        newConnection[seatId] = {id: seatId};
-        if(locationIndex < randomIndex && randomIndex < locations.length) {
-          var newClient = {start: locations[locationIndex], end: locations[randomIndex]}
 
-          var randomName = Math.floor((Math.random() * (250)));
-          if(randomName < names.length) {
-            var randomDescription = Math.floor((Math.random() * (descriptions.length)));
-            newConnection[seatId].name = names[randomName];
-            newConnection[seatId].description = descriptions[randomDescription];
-          }
-          /*
-           Päivitetään aikaisempaan tietoon milloin tulee next.
-           */
-          if(isNotDefined) {
-            if(locationIndex != 0) {
-              //console.log(locationIndex);
-              //console.log("s161 " + connections[0]);
-              connections[0][seatId].next = locations[locationIndex];
-            }
-          } else if(seatMaintenance[seatId].start !== undefined) {
-            connections[locationMap[seatMaintenance[seatId].start]][seatId][next] = locations[locationIndex];
-          }
-          newConnection[seatId].start = locations[locationIndex];
-          newConnection[seatId].end = locations[randomIndex];
-          seatMaintenance[seatId] = {start: locations[locationIndex], end: locations[randomIndex]};
-        }
-
-      }
-
-    }
-    connections.push(newConnection)
-  }
-
-}
-
-generateData();
 
